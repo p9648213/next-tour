@@ -18,23 +18,39 @@ export default function Home({ searchParams }) {
 
   let defaultTypeOption = selectTypeOptions[0];
   let defaultBehaviorOption = selectBehaviorOptions[0];
+  let defaultSearchTerm = "";
 
   for (const option of selectTypeOptions) {
-    if (Object.keys(searchParams)[0] === option.value) {
+    if (
+      Object.keys(searchParams)[0] &&
+      Object.keys(searchParams)[0] === option.value
+    ) {
       defaultTypeOption = option;
     }
   }
 
   for (const option of selectBehaviorOptions) {
-    if (Object.values(searchParams)[0] === option.value) {
+    if (
+      Object.values(searchParams)[0] &&
+      Object.values(searchParams)[0] === option.value
+    ) {
       defaultBehaviorOption = option;
     }
+  }
+
+  if (
+    Object.keys(searchParams)[1] &&
+    Object.keys(searchParams)[1] === "search"
+  ) {
+    defaultSearchTerm = Object.values(searchParams)[1];
   }
 
   let sortString =
     defaultBehaviorOption.value === "asc"
       ? defaultTypeOption.value
       : `-${defaultTypeOption.value}`;
+
+  let searchTerm = defaultSearchTerm;
 
   return (
     <main className="main">
@@ -50,9 +66,10 @@ export default function Home({ searchParams }) {
             options: selectBehaviorOptions,
             default: defaultBehaviorOption,
           }}
+          defaultSearchTerm={defaultSearchTerm}
         />
       </div>
-      <AllTours queryParams={sortString} />
+      <AllTours queryParams={{ sortString, searchTerm }} />
     </main>
   );
 }

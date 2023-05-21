@@ -1,7 +1,10 @@
 async function fetchAllTour(queryParams) {
+  const { sortString, searchTerm } = queryParams;
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_URL}/api/v1/tours/?sort=${queryParams}`,
+      `${process.env.NEXT_PUBLIC_URL}/api/v1/tours/?sort=${sortString}${
+        searchTerm && `&name=${searchTerm}`
+      }`,
       {
         cache: "no-store",
       }

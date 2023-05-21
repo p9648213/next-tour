@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import Link from "next/link";
+import Title from "./Title";
 import Image from "next/image";
 import UserBox from "./UserBox";
 import { getUserInfo } from "@/utils/user-helper";
@@ -21,9 +21,7 @@ async function Header() {
   return (
     <header className="header">
       <nav className="nav nav--tours">
-        <Link className="nav__el" href="#">
-          All tours
-        </Link>
+        <Title title="All Tours" />
       </nav>
       <div className="header__logo">
         <Image
