@@ -76,7 +76,9 @@ function UserBox({ user }) {
           <Link href="/login" className="nav__el">
             Login
           </Link>
-          <button className="nav__el nav__el--cta">Sign up</button>
+          <Link href="/signup" className="nav__el nav__el--cta">
+            Sign up
+          </Link>
         </>
       )}
     </>

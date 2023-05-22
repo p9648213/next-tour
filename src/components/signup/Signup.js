@@ -2,31 +2,33 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useSelector, useDispatch } from "react-redux";
 import { showAlert } from "@/store";
+import { useSelector, useDispatch } from "react-redux";
 import Link from "next/link";
-import Alert from "@/components/shared/Alert";
-import LoginForm from "./LoginForm";
+import Alert from "../shared/Alert";
+import SignupForm from "./SignupForm";
 
-function Login({ isLogin }) {
+export default function Signup({ isLogin }) {
   const [formValues, setFormValues] = useState({
     email: "",
+    name: "",
     password: "",
+    passwordConfirm: "",
   });
 
-  const [loginSuccess, setLoginSuccess] = useState(false);
+  const [signupSuccess, setSignupSuccess] = useState(false);
+
+  const router = useRouter();
 
   const alert = useSelector((state) => state.alerts);
 
   const dispatch = useDispatch();
 
-  const router = useRouter();
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_URL_INTERNAL}/api/login`,
+      `${process.env.NEXT_PUBLIC_URL_INTERNAL}/api/signup`,
       {
         method: "POST",
         headers: {
@@ -49,31 +51,46 @@ function Login({ isLogin }) {
       dispatch(
         showAlert({
           type: "success",
-          message: "Logged in successfully",
+          message: "Sign up successfully",
         })
       );
-      setLoginSuccess(true);
+      setSignupSuccess(true);
       router.refresh();
     }
   };
 
   const handleInputChange = (e) => {
+    if (e.target.id === "name") {
+      setFormValues((prev) => {
+        const newName = { ...prev, name: e.target.value };
+        return newName;
+      });
+    }
+
     if (e.target.id === "email") {
       setFormValues((prev) => {
         const newEmail = { ...prev, email: e.target.value };
         return newEmail;
       });
     }
+
     if (e.target.id === "password") {
       setFormValues((prev) => {
         const newPassword = { ...prev, password: e.target.value };
         return newPassword;
       });
     }
+
+    if (e.target.id === "passwordConfirm") {
+      setFormValues((prev) => {
+        const newPasswordConfirm = { ...prev, passwordConfirm: e.target.value };
+        return newPasswordConfirm;
+      });
+    }
   };
 
   useEffect(() => {
-    if (loginSuccess) {
+    if (signupSuccess) {
       const navigate = setTimeout(() => {
         router.replace("/");
       }, 2000);
@@ -82,22 +99,22 @@ function Login({ isLogin }) {
         clearTimeout(navigate);
       };
     }
-  }, [loginSuccess, router]);
+  }, [signupSuccess, router]);
 
   return (
     <>
       {alert.show && <Alert type={alert.type} message={alert.message} />}
-      {isLogin && loginSuccess === false ? (
+      {isLogin && signupSuccess === false ? (
         <div>
           <h1>You are logged in</h1>
           <Link href="/" replace={true}>
             <h1>Go to home</h1>
           </Link>
         </div>
-      ) : loginSuccess ? (
+      ) : signupSuccess ? (
         <h1>You will be redirect to home page in 2 second</h1>
       ) : (
-        <LoginForm
+        <SignupForm
           formValues={formValues}
           handleInputChange={handleInputChange}
           handleSubmit={handleSubmit}
@@ -106,5 +123,3 @@ function Login({ isLogin }) {
     </>
   );
 }
-
-export default Login;

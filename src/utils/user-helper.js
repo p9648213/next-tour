@@ -19,6 +19,27 @@ async function login(formData) {
   }
 }
 
+async function signup(formData) {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/v1/users/signup`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+        credentials: "include",
+        cache: "no-store",
+      }
+    );
+
+    return res.json();
+  } catch (error) {
+    return { status: "fail", message: error.message };
+  }
+}
+
 async function getUserInfo(token) {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/users/me`, {
@@ -75,4 +96,4 @@ async function changePassword(formData, token) {
   }
 }
 
-module.exports = { login, getUserInfo, updateUser, changePassword };
+module.exports = { login, getUserInfo, updateUser, changePassword, signup };
