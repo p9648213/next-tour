@@ -93,7 +93,7 @@ export default function Signup({ isLogin }) {
     if (signupSuccess) {
       const navigate = setTimeout(() => {
         router.replace("/");
-      }, 2000);
+      }, 5000);
 
       return () => {
         clearTimeout(navigate);
@@ -112,7 +112,10 @@ export default function Signup({ isLogin }) {
           </Link>
         </div>
       ) : signupSuccess ? (
-        <h1>You will be redirect to home page in 2 second</h1>
+        <h1>
+          Your account have been created ! You will be automatically redirected
+          to home page in 5 seconds
+        </h1>
       ) : (
         <SignupForm
           formValues={formValues}

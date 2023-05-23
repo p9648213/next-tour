@@ -76,7 +76,7 @@ function Login({ isLogin }) {
     if (loginSuccess) {
       const navigate = setTimeout(() => {
         router.replace("/");
-      }, 2000);
+      }, 5000);
 
       return () => {
         clearTimeout(navigate);
@@ -95,7 +95,10 @@ function Login({ isLogin }) {
           </Link>
         </div>
       ) : loginSuccess ? (
-        <h1>You will be redirect to home page in 2 second</h1>
+        <h1>
+          Welcome! You will be redirected automatically to home page in 5
+          seconds
+        </h1>
       ) : (
         <LoginForm
           formValues={formValues}

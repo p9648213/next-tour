@@ -1,8 +1,6 @@
 "use client";
 
-import Link from "next/link";
-
-export default function LoginForm({
+export default function ResetPasswordForm({
   formValues,
   handleInputChange,
   handleSubmit,
@@ -10,25 +8,11 @@ export default function LoginForm({
   return (
     <main className="main">
       <div className="login-form">
-        <h2 className="heading-secondary ma-bt-lg">Log into your account</h2>
+        <h2 className="heading-secondary ma-bt-lg">Reset Password</h2>
         <form className="form" onSubmit={handleSubmit}>
           <div className="form__group">
             <label className="form__label" htmlFor="email">
-              Email address
-            </label>
-            <input
-              id="email"
-              className="form__input"
-              type="email"
-              value={formValues.email}
-              onChange={handleInputChange}
-              placeholder="you@example.com"
-              required
-            />
-          </div>
-          <div className="form__group ma-bt-md">
-            <label className="form__label" htmlFor="password">
-              Password
+              New Password
             </label>
             <input
               id="password"
@@ -38,17 +22,25 @@ export default function LoginForm({
               onChange={handleInputChange}
               placeholder="••••••••"
               required
-              minLength="8"
             />
           </div>
           <div className="form__group">
-            <Link href="forgot-password" className="forgot-password">
-              Forgot your password ?
-            </Link>
+            <label className="form__label" htmlFor="email">
+              New Password Confirm
+            </label>
+            <input
+              id="passwordConfirm"
+              className="form__input"
+              type="password"
+              value={formValues.passwordConfirm}
+              onChange={handleInputChange}
+              placeholder="••••••••"
+              required
+            />
           </div>
           <div className="form__group">
             <button type="submit" className="btn btn--green">
-              Login
+              Reset Password
             </button>
           </div>
         </form>

@@ -1069,6 +1069,12 @@ body {
   transform: translateY(-2px);
 }
 
+.forgot-password {
+  font-size: 14px;
+  font-weight: bold;
+  color: #2a6ad0;
+}
+
 .filter-container {
   display: grid;
   grid-template-columns: auto auto auto;

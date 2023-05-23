@@ -13,7 +13,7 @@ function Alert({ type, message }) {
     if (alert.show) {
       const closeAlertTimeout = setTimeout(() => {
         dispatch(closeAlert());
-      }, 4000);
+      }, 5000);
 
       return () => {
         clearTimeout(closeAlertTimeout);
