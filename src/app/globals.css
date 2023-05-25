@@ -264,6 +264,10 @@ body {
 @media only screen and (max-width: 62.5em) {
   .header {
     flex-direction: column;
+    height: max-content;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    justify-content: center;
   }
 }
 
