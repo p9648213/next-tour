@@ -29,6 +29,7 @@ function MapBox({ tour }) {
       const popup = new mapboxgl.Popup({
         offset: 30,
         closeOnClick: false,
+        focusAfterOpen: false,
       }).setText(`Day ${loc.day}: ${loc.description}`);
 
       //Add marker

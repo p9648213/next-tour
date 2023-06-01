@@ -7,7 +7,7 @@ export default function Header({ tour }) {
         <div className="header__hero-overlay">&nbsp;</div>
         <Image
           className="header__hero-img"
-          src={`/img/tours/${tour.imageCover}`}
+          src={`${process.env.NEXT_PUBLIC_URL}/img/tours/${tour.imageCover}`}
           alt={tour.name}
           width={2000}
           height={1333}

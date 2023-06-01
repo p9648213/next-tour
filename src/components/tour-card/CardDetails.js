@@ -3,9 +3,7 @@ import CardData from "./CardData";
 export default function CardDetails({ tour }) {
   return (
     <div className="card__details">
-      <h4 className="card__sub-heading">
-        {tour.difficulty} {tour.duration}-day tour
-      </h4>
+      <h4 className="card__sub-heading">{tour.duration}-day tour</h4>
       <p className="card__text">{tour.summary}</p>
       <CardData text={tour.startLocation.description} icon="map-pin" />
       <CardData

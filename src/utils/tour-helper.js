@@ -31,4 +31,19 @@ async function fetchTour(params) {
   }
 }
 
-module.exports = { fetchAllTour, fetchTour };
+async function fetchNumberOfTours() {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/v1/tours/numberoftours`,
+      {
+        cache: "no-store",
+      }
+    );
+
+    return res.json();
+  } catch (error) {
+    return { status: "fail", message: error.message };
+  }
+}
+
+module.exports = { fetchAllTour, fetchTour, fetchNumberOfTours };

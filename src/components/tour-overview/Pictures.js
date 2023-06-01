@@ -14,7 +14,7 @@ export default function Pictures({ tour }) {
         /> */}
         <img
           className={`picture-box__img picture-box__img--${index + 1}`}
-          src={`/img/tours/${img}`}
+          src={`${process.env.NEXT_PUBLIC_URL}/img/tours/${img}`}
           alt={`${tour.name} Tour ${index + 1}`}
         ></img>
       </div>

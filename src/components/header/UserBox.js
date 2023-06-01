@@ -59,7 +59,7 @@ function UserBox({ user }) {
           >
             Log out
           </button>
-          <Link className="nav__el" href={`user/${user.name}`}>
+          <Link className="nav__el" href={`user/myprofile`}>
             <Image
               className="nav__user-img"
               href="#"

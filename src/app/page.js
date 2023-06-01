@@ -1,9 +1,20 @@
 import AllTours from "@/components/all-tours/AllTours";
 import Filter from "@/components/shared/Filter";
+import PagiContainer from "@/components/shared/PagiContainer";
+
+import { fetchNumberOfTours } from "@/utils/tour-helper";
 
 export const dynamic = "force-dynamic";
 
-export default function Home({ searchParams }) {
+export default async function Home({ searchParams }) {
+  const res = await fetchNumberOfTours();
+
+  if (res.status === "fail") {
+    throw new Error(res.message);
+  }
+
+  const totalTour = res.data.data;
+
   const selectTypeOptions = [
     { value: "createdAt", label: "New Tour" },
     { value: "price", label: "Price" },
@@ -70,6 +81,7 @@ export default function Home({ searchParams }) {
         />
       </div>
       <AllTours queryParams={{ sortString, searchTerm }} />
+      <PagiContainer totalData={totalTour} />
     </main>
   );
 }

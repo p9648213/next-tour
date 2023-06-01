@@ -40,7 +40,7 @@ body {
 
 .main {
   background-color: #f7f7f7;
-  padding: 7rem 6rem 8rem 6rem;
+  padding: 7rem 6rem 6rem 6rem;
   flex: 1;
   position: relative;
 }
@@ -300,8 +300,6 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: black;
-  opacity: 0.1;
 }
 
 .heading-box {
@@ -313,14 +311,14 @@ body {
 }
 .heading-box__group {
   color: #f7f7f7;
+  background-color: rgba(51, 75, 99, 0.7);
   margin-top: 3rem;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .heading-box__detail {
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 3rem;
   text-transform: uppercase;
   display: flex;
   align-items: center;
@@ -1122,4 +1120,60 @@ input:focus {
 
 .select-container {
   height: 100%;
+}
+
+.pagination {
+  margin-top: 60px;
+}
+
+.pagination ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 30px;
+  background: #fff;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #334b63;
+}
+
+.pagination ul li {
+  color: #334b63;
+  list-style: none;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.pagination ul li.numb {
+  border-radius: 3px;
+  height: 45px;
+  width: 45px;
+  margin: 0 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination ul li.dots {
+  font-size: 24px;
+  padding: 0 10px;
+  cursor: default;
+  height: 42px;
+}
+
+.pagination ul li.pagi-btn {
+  padding: 0 20px;
+  font-size: 27px;
+  font-weight: 600;
+  translate: 0 -2px;
+  border: none;
+}
+
+.pagination ul li.active,
+.pagination ul li.numb:hover {
+  color: #fff;
+  background: #334b63;
 }
