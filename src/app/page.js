@@ -1,20 +1,12 @@
 import AllTours from "@/components/all-tours/AllTours";
 import Filter from "@/components/shared/Filter";
-import PagiContainer from "@/components/shared/PagiContainer";
+import Pagination from "@/components/shared/Pagination";
 
-import { fetchNumberOfTours } from "@/utils/tour-helper";
+import { fetchAllTour } from "@/utils/tour-helper";
 
 export const dynamic = "force-dynamic";
 
 export default async function Home({ searchParams }) {
-  const res = await fetchNumberOfTours();
-
-  if (res.status === "fail") {
-    throw new Error(res.message);
-  }
-
-  const totalTour = res.data.data;
-
   const selectTypeOptions = [
     { value: "createdAt", label: "New Tour" },
     { value: "price", label: "Price" },
@@ -30,38 +22,76 @@ export default async function Home({ searchParams }) {
   let defaultTypeOption = selectTypeOptions[0];
   let defaultBehaviorOption = selectBehaviorOptions[0];
   let defaultSearchTerm = "";
+  let defaultPage = 1;
+  let defaultLimit = 6;
 
-  for (const option of selectTypeOptions) {
-    if (
-      Object.keys(searchParams)[0] &&
-      Object.keys(searchParams)[0] === option.value
-    ) {
-      defaultTypeOption = option;
+  const getTypeOption = (function () {
+    for (const option of selectTypeOptions) {
+      for (const key of Object.keys(searchParams)) {
+        if (key.includes(option.value)) {
+          return {
+            defaultTypeOption: option,
+            behaviorKey: searchParams[key],
+          };
+        }
+      }
+    }
+  })();
+
+  if (getTypeOption) {
+    defaultTypeOption = getTypeOption.defaultTypeOption;
+
+    let checkBehaviorKey = Array.isArray(getTypeOption.behaviorKey)
+      ? getTypeOption.behaviorKey[0]
+      : getTypeOption.behaviorKey;
+
+    for (const option of selectBehaviorOptions) {
+      if (option.value === checkBehaviorKey) {
+        defaultBehaviorOption = option;
+        break;
+      }
     }
   }
 
-  for (const option of selectBehaviorOptions) {
-    if (
-      Object.values(searchParams)[0] &&
-      Object.values(searchParams)[0] === option.value
-    ) {
-      defaultBehaviorOption = option;
+  for (const key of Object.keys(searchParams)) {
+    if (key === "search") {
+      defaultSearchTerm = Array.isArray(searchParams[key])
+        ? searchParams[key][0]
+        : searchParams[key];
+    }
+    if (key === "page") {
+      defaultPage = Array.isArray(searchParams[key])
+        ? searchParams[key][0]
+        : searchParams[key];
+
+      defaultPage = parseInt(defaultPage);
+
+      if (isNaN(defaultPage)) {
+        defaultPage = 1;
+      }
     }
   }
 
-  if (
-    Object.keys(searchParams)[1] &&
-    Object.keys(searchParams)[1] === "search"
-  ) {
-    defaultSearchTerm = Object.values(searchParams)[1];
-  }
-
-  let sortString =
+  const sortString =
     defaultBehaviorOption.value === "asc"
       ? defaultTypeOption.value
       : `-${defaultTypeOption.value}`;
 
-  let searchTerm = defaultSearchTerm;
+  const queryParams = {
+    sortString,
+    searchTerm: defaultSearchTerm,
+    page: defaultPage,
+    limit: defaultLimit,
+  };
+
+  const res = await fetchAllTour(queryParams);
+
+  if (res.status === "fail") {
+    throw new Error(res.message);
+  }
+
+  const tourData = res.data.data;
+  const totalTour = res.totalDocsBeforePaginate;
 
   return (
     <main className="main">
@@ -78,10 +108,16 @@ export default async function Home({ searchParams }) {
             default: defaultBehaviorOption,
           }}
           defaultSearchTerm={defaultSearchTerm}
+          defaultPage={defaultPage}
         />
       </div>
-      <AllTours queryParams={{ sortString, searchTerm }} />
-      <PagiContainer totalData={totalTour} />
+      <AllTours tourData={tourData} />
+      <Pagination
+        totalData={totalTour}
+        defaultPage={defaultPage}
+        defaultLimit={defaultLimit}
+        siblings={1}
+      />
     </main>
   );
 }

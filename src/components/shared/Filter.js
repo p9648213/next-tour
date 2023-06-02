@@ -5,45 +5,40 @@ import SelectBox from "./SelectBox";
 import SearchBar from "./SearchBar";
 
 export default function Filter(props) {
+  const router = useRouter();
+
   const typeOptions = props.selectTypeOptions;
   const behaviorOptions = props.selectBehaviorOptions;
   const defaultSearchTerm = props.defaultSearchTerm;
-
-  const router = useRouter();
+  const defaultPage = props.defaultPage;
 
   const onInputChange = (e, name) => {
     if (name === "type") {
-      if (defaultSearchTerm !== "") {
-        router.push(
-          `/?${e.value}=${behaviorOptions.default.value}&search=${defaultSearchTerm}`
-        );
-      } else {
-        router.push(`/?${e.value}=${behaviorOptions.default.value}`);
-      }
+      router.push(
+        `/${defaultPage !== 1 ? `?page=${defaultPage}&` : "?"}${e.value}=${
+          behaviorOptions.default.value
+        }${defaultSearchTerm !== "" ? `&search=${defaultSearchTerm}` : ""}`
+      );
     }
 
     if (name === "behavior") {
-      if (defaultSearchTerm !== "") {
-        router.push(
-          `/?${typeOptions.default.value}=${e.value}&search=${defaultSearchTerm}`
-        );
-      } else {
-        router.push(`/?${typeOptions.default.value}=${e.value}`);
-      }
+      router.push(
+        `/${defaultPage !== 1 ? `?page=${defaultPage}&` : "?"}${
+          typeOptions.default.value
+        }=${e.value}${
+          defaultSearchTerm !== "" ? `&search=${defaultSearchTerm}` : ""
+        }`
+      );
     }
 
     if (name === "searchTerm") {
-      if (e.value) {
-        if (e.value !== defaultSearchTerm) {
-          router.push(
-            `/?${typeOptions.default.value}=${behaviorOptions.default.value}&search=${e.value}`
-          );
-        }
-      } else {
-        router.push(
-          `/?${typeOptions.default.value}=${behaviorOptions.default.value}`
-        );
-      }
+      router.push(
+        `/${defaultPage !== 1 ? `?page=${defaultPage}&` : "?"}${
+          typeOptions.default.value
+        }=${behaviorOptions.default.value}${
+          e.value !== "" ? `&search=${e.value}` : ""
+        }`
+      );
     }
   };
 
