@@ -46,4 +46,22 @@ async function fetchNumberOfTours() {
   }
 }
 
-module.exports = { fetchAllTour, fetchTour, fetchNumberOfTours };
+async function bookTour(tourId, token) {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/v1/bookings/checkout-session/${tourId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        cache: "no-store",
+      }
+    );
+
+    return res.json();
+  } catch (error) {
+    return { status: "fail", message: error.message };
+  }
+}
+
+module.exports = { fetchAllTour, fetchTour, fetchNumberOfTours, bookTour };
