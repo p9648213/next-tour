@@ -1,14 +1,12 @@
-import Link from "next/link";
-
-export default function NavItem({ link, text, icon, active }) {
+export default function NavItem({ text, icon, active, ...rest }) {
   return (
-    <li className={active ? "side-nav--active" : ""}>
-      <Link href={link}>
+    <li className={active ? "side-nav--active" : ""} {...rest}>
+      <div>
         <svg>
           <use xlinkHref={`/img/icons.svg#icon-${icon}`}></use>
         </svg>
         {text}
-      </Link>
+      </div>
     </li>
   );
 }

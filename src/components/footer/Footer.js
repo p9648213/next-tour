@@ -31,8 +31,8 @@ export default function Footer() {
         </li>
       </ul>
       <p className="footer__copyright">
-        &copy; by Jonas Schmedtmann. Feel free to use this project for your own
-        purposes, EXCEPT producing your owm course or tutorials!
+        &copy; by p9648213750912. Lorem ipsum dolor sit amet, consectetur
+        adipiscing elit
       </p>
     </footer>
   );

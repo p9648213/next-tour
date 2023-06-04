@@ -138,6 +138,23 @@ async function changePassword(formData, token) {
   }
 }
 
+async function getMyBookingTours(token) {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/v1/bookings/my-booking-tour`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    return res.json();
+  } catch (error) {
+    return { status: "fail", message: error.message };
+  }
+}
+
 module.exports = {
   login,
   getUserInfo,
@@ -146,4 +163,5 @@ module.exports = {
   signup,
   forgotPassword,
   resetPassword,
+  getMyBookingTours,
 };

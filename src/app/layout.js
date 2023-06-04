@@ -7,7 +7,7 @@ export const metadata = {
   title: "Natours | Exciting tours for adventurous people",
   description: "Made in heaven",
   icons: {
-    icon: "/img/favicon.png",
+    icon: "/img/favicon.ico",
   },
 };
 
