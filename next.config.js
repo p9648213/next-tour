@@ -7,7 +7,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "nodetour-1-t6280858.deta.app",
+        hostname: "next-tour-production.up.railway.app",
         pathname: "/img/**",
       },
     ],
