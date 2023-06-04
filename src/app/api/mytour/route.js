@@ -1,16 +1,12 @@
 import { getMyBookingTours } from "@/utils/user-helper";
 import { NextResponse } from "next/server";
 
-export async function GET(request) {
-  const token = request.cookies.get("jwt");
+export const dynamic = "force-dynamic";
 
-  if (token) {
-    const res = await getMyBookingTours(token.value);
-    return NextResponse.json(res);
-  } else {
-    return NextResponse.json({
-      status: "fail",
-      message: "You are not logged in",
-    });
-  }
+export async function GET(request) {
+  const token = request.cookies.get("jwt").value;
+
+  const res = await getMyBookingTours(token);
+
+  return NextResponse.json(res);
 }
