@@ -81,8 +81,10 @@ export default function MyBooking() {
         </div>
       ) : (
         <div className="booking-container">
-          <h1>You are not logged in.</h1>
-          <h1>Please login to see your booking details.</h1>
+          <div className="booking-title-nologin">
+            <h1>You are not logged in.</h1>
+            <h1>Please login to see your booking details.</h1>
+          </div>
         </div>
       )}
     </>

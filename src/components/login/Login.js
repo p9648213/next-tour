@@ -76,7 +76,7 @@ function Login({ isLogin }) {
     if (loginSuccess) {
       const navigate = setTimeout(() => {
         router.replace("/");
-      }, 5000);
+      }, 3000);
 
       return () => {
         clearTimeout(navigate);
@@ -96,7 +96,7 @@ function Login({ isLogin }) {
         </div>
       ) : loginSuccess ? (
         <h1>
-          Welcome! You will be redirected automatically to home page in 5
+          Welcome! You will be redirected automatically to home page in 3
           seconds
         </h1>
       ) : (

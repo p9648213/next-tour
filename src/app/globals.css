@@ -1202,6 +1202,11 @@ input:focus {
   color: #526c85;
 }
 
+booking-title-nologin h1 {
+  font-size: 25px;
+  color: gray;
+}
+
 .table {
   table-layout: auto;
   border-collapse: collapse;

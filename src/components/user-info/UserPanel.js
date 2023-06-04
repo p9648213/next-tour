@@ -5,9 +5,12 @@ import UserInfo from "./UserInfo";
 import MyBooking from "./MyBooking";
 
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 export default function UserPanel() {
-  const [activeItem, setActiveItem] = useState("setting");
+  const [activeItem, setActiveItem] = useState(
+    useSearchParams().get("section") === "booking" ? "booking" : "setting"
+  );
 
   function changeActiveItem(item) {
     if (item !== activeItem) {
