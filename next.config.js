@@ -6,9 +6,8 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "http",
-        hostname: "localhost",
-        port: "8000",
+        protocol: "https",
+        hostname: "bored-gold-wombat.cyclic.app",
         pathname: "/img/**",
       },
     ],
