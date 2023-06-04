@@ -146,6 +146,7 @@ async function getMyBookingTours(token) {
         headers: {
           Authorization: `Bearer ${token}`,
         },
+        cache: "no-store",
       }
     );
 
