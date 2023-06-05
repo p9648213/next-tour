@@ -4,7 +4,8 @@ async function fetchAllTour(queryParams) {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_URL}/api/v1/tours/?sort=${sortString}${
         searchTerm && `&name=${searchTerm}`
-      }&page=${page}&limit=${limit}`
+      }&page=${page}&limit=${limit}`,
+      { next: { tags: ["fetchAllTour"] } }
     );
 
     return res.json();
@@ -16,7 +17,8 @@ async function fetchAllTour(queryParams) {
 async function fetchTour(params) {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_URL}/api/v1/tours/slug/${params}`
+      `${process.env.NEXT_PUBLIC_URL}/api/v1/tours/slug/${params}`,
+      { next: { tags: [params] } }
     );
 
     return res.json();

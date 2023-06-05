@@ -4,8 +4,6 @@ import Pagination from "@/components/shared/Pagination";
 
 import { fetchAllTour } from "@/utils/tour-helper";
 
-export const dynamic = "force-dynamic";
-
 export default async function Home({ searchParams }) {
   const selectTypeOptions = [
     { value: "createdAt", label: "New Tour" },
