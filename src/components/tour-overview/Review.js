@@ -30,7 +30,11 @@ export default function Review({ tour }) {
       <div key={index} className="reviews__card">
         <div className="reviews__avatar">
           <Image
-            src={`${process.env.NEXT_PUBLIC_URL}/img/users/${review.user.photo}`}
+            src={`${
+              review.user.photo === "default.webp"
+                ? "/img/default.webp"
+                : review.user.photo
+            }`}
             alt={`review.user.name`}
             className="reviews__avatar-img"
             width={128}

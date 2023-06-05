@@ -63,7 +63,9 @@ function UserBox({ user }) {
             <Image
               className="nav__user-img"
               href="#"
-              src={`${process.env.NEXT_PUBLIC_URL}/img/users/${user.photo}`}
+              src={`${
+                user.photo === "default.webp" ? "/img/default.webp" : user.photo
+              }`}
               alt={`Photo of ${user.name}`}
               width={128}
               height={128}

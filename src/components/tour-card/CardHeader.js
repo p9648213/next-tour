@@ -6,7 +6,7 @@ export default function CardHeader({ tour }) {
       <div className="card__picture">
         <div className="card__picture-overlay">
           <Image
-            src={`${process.env.NEXT_PUBLIC_URL}/img/tours/${tour.imageCover}`}
+            src={tour.imageCover}
             className="card__picture-overlay"
             width={2000}
             height={1333}

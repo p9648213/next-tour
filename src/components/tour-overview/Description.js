@@ -23,7 +23,9 @@ export default function Description({ tour }) {
       <div key={index} className="overview-box__detail">
         <Image
           className="overview-box__img"
-          src={`${process.env.NEXT_PUBLIC_URL}/img/users/${guide.photo}`}
+          src={`${
+            guide.photo === "default.webp" ? "/img/default.webp" : guide.photo
+          }`}
           alt={guide.name}
           width={128}
           height={128}

@@ -6,7 +6,7 @@ export default function Pictures({ tour }) {
       <div key={index} className="picture-box">
         <Image
           className={`picture-box__img picture-box__img--${index + 1}`}
-          src={`${process.env.NEXT_PUBLIC_URL}/img/tours/${img}`}
+          src={img}
           alt={`${tour.name} Tour ${index + 1}`}
           width={2000}
           height={1333}

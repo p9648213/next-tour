@@ -120,7 +120,11 @@ export default function UserForm() {
               src={
                 isPhotoSelected
                   ? URL.createObjectURL(photo[0])
-                  : `${process.env.NEXT_PUBLIC_URL}/img/users/${user.photo}`
+                  : `${
+                      user.photo === "default.webp"
+                        ? "/img/default.webp"
+                        : user.photo
+                    }`
               }
               alt="User photo"
             />
