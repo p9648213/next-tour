@@ -1186,7 +1186,7 @@ input:focus {
   background: #334b63;
 }
 
-.booking-container {
+.sidebar-content__container {
   display: flex;
   flex-direction: column;
   gap: 50px;
@@ -1197,12 +1197,12 @@ input:focus {
   padding: 7rem 0;
 }
 
-.booking-container h1 {
+.sidebar-content__container h1 {
   font-size: 30px;
   color: #526c85;
 }
 
-booking-title-nologin h1 {
+.booking-title-nologin h1 {
   font-size: 25px;
   color: gray;
 }
@@ -1220,4 +1220,27 @@ booking-title-nologin h1 {
 
 .table-header {
   border-bottom: 1px solid;
+}
+
+.input-tag__container {
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.input-tag__container input {
+  padding: 10px;
+  font-size: 18px;
+}
+
+.revalidate-error {
+  color: #ed4b4b;
+  font-weight: 300;
+}
+
+.revalidate-success {
+  color: #20bf6b;
+  font-weight: 300;
 }

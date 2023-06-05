@@ -74,12 +74,12 @@ export default function MyBooking() {
   return (
     <>
       {user.name ? (
-        <div className="booking-container">
+        <div className="sidebar-content__container">
           <h1>Booking Details</h1>
           {content}
         </div>
       ) : (
-        <div className="booking-container">
+        <div className=".sidebar-content__container">
           <div className="booking-title-nologin">
             <h1>You are not logged in.</h1>
             <h1>Please login to see your booking details.</h1>

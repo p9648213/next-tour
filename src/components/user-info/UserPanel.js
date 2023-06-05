@@ -6,6 +6,7 @@ import MyBooking from "./MyBooking";
 
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
+import ManageTour from "./ManageTour";
 
 export default function UserPanel() {
   const [activeItem, setActiveItem] = useState(
@@ -26,6 +27,10 @@ export default function UserPanel() {
 
   if (activeItem === "booking") {
     content = <MyBooking />;
+  }
+
+  if (activeItem === "manage-tours") {
+    content = <ManageTour />;
   }
 
   return (
