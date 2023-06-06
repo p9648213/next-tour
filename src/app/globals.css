@@ -1124,6 +1124,11 @@ input:focus {
   color: #526c85;
 }
 
+.my-booking {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
 .booking-title-nologin h1 {
   font-size: 25px;
   color: gray;
@@ -1263,7 +1268,7 @@ input:focus {
   .section-pictures {
     display: block;
     height: 1070px;
-    overflow-y: scroll;
+    overflow-y: auto;
   }
 
   .picture-box__img {
@@ -1318,6 +1323,6 @@ input:focus {
   .section-pictures {
     display: block;
     height: 1200px;
-    overflow-y: hidden;
+    overflow-y: auto;
   }
 }

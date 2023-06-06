@@ -17,6 +17,7 @@ function MapBox({ tour }) {
     });
 
     map.doubleClickZoom.disable();
+    map.scrollZoom.disable();
 
     const bounds = new mapboxgl.LngLatBounds();
 

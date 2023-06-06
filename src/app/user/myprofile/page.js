@@ -2,7 +2,13 @@ import dynamic from "next/dynamic";
 
 const UserPanel = dynamic(() => import("@/components/user-info/UserPanel"), {
   ssr: false,
-  loading: () => <p>Loading...</p>,
+  loading: () => (
+    <div className="loading-container">
+      <h1 className="loading" style={{ color: "gray" }}>
+        Loading...
+      </h1>
+    </div>
+  ),
 });
 
 export default function UserPage() {

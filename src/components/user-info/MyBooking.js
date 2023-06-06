@@ -58,9 +58,21 @@ export default function MyBooking() {
   let content;
 
   if (loading) {
-    content = <div>Loading...</div>;
+    content = (
+      <div className="loading-container">
+        <h1 className="loading" style={{ color: "gray" }}>
+          Loading...
+        </h1>
+      </div>
+    );
   } else if (!loading && error) {
-    content = <div>{error}</div>;
+    content = (
+      <div className="loading-container">
+        <h1 className="loading" style={{ color: "#ed4b4b" }}>
+          {error}
+        </h1>
+      </div>
+    );
   } else {
     content = <Table data={tableData} config={config} keyFn={keyFn}></Table>;
   }
@@ -76,7 +88,7 @@ export default function MyBooking() {
       {user.name ? (
         <div className="sidebar-content__container">
           <h1>Booking Details</h1>
-          {content}
+          <div className="my-booking">{content}</div>
         </div>
       ) : (
         <div className="sidebar-content__container">
