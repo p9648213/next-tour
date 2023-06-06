@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { loadStripe } from "@stripe/stripe-js";
@@ -10,6 +11,8 @@ import Alert from "@/components/shared/Alert";
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY);
 
 export default function Booking({ tour }) {
+  const [loading, setLoading] = useState(false);
+
   const router = useRouter();
 
   const user = useSelector((state) => state.users);
@@ -22,6 +25,8 @@ export default function Booking({ tour }) {
   }
 
   async function handleCheckout() {
+    setLoading(true);
+
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_URL_INTERNAL}/api/booking`,
       {
@@ -34,6 +39,8 @@ export default function Booking({ tour }) {
     );
 
     const responseData = await response.json();
+
+    setLoading(false);
 
     if (responseData.status === "success") {
       (await stripePromise).redirectToCheckout({
@@ -74,8 +81,9 @@ export default function Booking({ tour }) {
               <button
                 className="btn btn--blue span-all-rows cta__text"
                 onClick={() => handleCheckout()}
+                disabled={loading}
               >
-                Book tour now!
+                {loading ? "Loading..." : "Book tour now!"}
               </button>
             ) : (
               <button
