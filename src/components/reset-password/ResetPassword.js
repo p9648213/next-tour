@@ -14,6 +14,8 @@ export default function ResetPassword({ token }) {
 
   const [successMessage, setSuccessMessage] = useState("");
 
+  const [loading, setLoading] = useState(false);
+
   const alert = useSelector((state) => state.alerts);
 
   const dispatch = useDispatch();
@@ -36,6 +38,8 @@ export default function ResetPassword({ token }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    setLoading(true);
+
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_URL_INTERNAL}/api/resetPassword`,
       {
@@ -48,6 +52,8 @@ export default function ResetPassword({ token }) {
     );
 
     const responseData = await response.json();
+
+    setLoading(false);
 
     if (responseData.status === "fail") {
       dispatch(
@@ -63,6 +69,7 @@ export default function ResetPassword({ token }) {
           message: "Your password is successfully reset",
         })
       );
+
       setSuccessMessage(responseData.message);
     }
   };
@@ -77,6 +84,7 @@ export default function ResetPassword({ token }) {
           formValues={formValues}
           handleInputChange={handleInputChange}
           handleSubmit={handleSubmit}
+          loading={loading}
         />
       )}
     </>

@@ -4,6 +4,7 @@ export default function ForgotPasswordForm({
   formValues,
   handleInputChange,
   handleSubmit,
+  loading,
 }) {
   return (
     <main className="main">
@@ -25,8 +26,8 @@ export default function ForgotPasswordForm({
             />
           </div>
           <div className="form__group">
-            <button type="submit" className="btn btn--blue">
-              Send Email
+            <button type="submit" className="btn btn--blue" disabled={loading}>
+              {loading ? "Loading..." : "Send Email"}
             </button>
           </div>
         </form>

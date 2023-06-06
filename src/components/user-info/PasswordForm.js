@@ -4,12 +4,14 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { showAlert } from "@/store";
 
-export default function PasswordForm({ token }) {
+export default function PasswordForm() {
   const [passwordConfig, setPasswordConfig] = useState({
     passwordCurrent: "",
     password: "",
     passwordConfirm: "",
   });
+
+  const [loading, setLoading] = useState(false);
 
   const user = useSelector((state) => state.users);
   const dispatch = useDispatch();
@@ -38,6 +40,8 @@ export default function PasswordForm({ token }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    setLoading(true);
+
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_URL_INTERNAL}/api/changePassword`,
       {
@@ -50,6 +54,8 @@ export default function PasswordForm({ token }) {
     );
 
     const responseData = await res.json();
+
+    setLoading(false);
 
     if (responseData.status === "success") {
       dispatch(
@@ -64,6 +70,7 @@ export default function PasswordForm({ token }) {
         password: "",
         passwordConfirm: "",
       };
+
       setPasswordConfig(initialPasswordState);
     } else {
       dispatch(
@@ -125,8 +132,12 @@ export default function PasswordForm({ token }) {
             />
           </div>
           <div className="form__group right">
-            <button type="submit" className="btn btn--small btn--blue">
-              Save password
+            <button
+              type="submit"
+              className="btn btn--small btn--blue"
+              disabled={loading}
+            >
+              {loading ? "Loading..." : "Save password"}
             </button>
           </div>
         </form>

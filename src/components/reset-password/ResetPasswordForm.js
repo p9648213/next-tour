@@ -4,6 +4,7 @@ export default function ResetPasswordForm({
   formValues,
   handleInputChange,
   handleSubmit,
+  loading,
 }) {
   return (
     <main className="main">
@@ -39,8 +40,8 @@ export default function ResetPasswordForm({
             />
           </div>
           <div className="form__group">
-            <button type="submit" className="btn btn--blue">
-              Reset Password
+            <button type="submit" className="btn btn--blue" disabled={loading}>
+              {loading ? "Loading..." : "Reset Password"}
             </button>
           </div>
         </form>

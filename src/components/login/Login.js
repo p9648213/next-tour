@@ -16,6 +16,8 @@ function Login({ isLogin }) {
 
   const [loginSuccess, setLoginSuccess] = useState(false);
 
+  const [loading, setLoading] = useState(false);
+
   const alert = useSelector((state) => state.alerts);
 
   const dispatch = useDispatch();
@@ -24,6 +26,8 @@ function Login({ isLogin }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    setLoading(true);
 
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_URL_INTERNAL}/api/login`,
@@ -37,6 +41,8 @@ function Login({ isLogin }) {
     );
 
     const responseData = await response.json();
+
+    setLoading(false);
 
     if (responseData.status === "fail") {
       dispatch(
@@ -104,6 +110,7 @@ function Login({ isLogin }) {
           formValues={formValues}
           handleInputChange={handleInputChange}
           handleSubmit={handleSubmit}
+          loading={loading}
         />
       )}
     </>

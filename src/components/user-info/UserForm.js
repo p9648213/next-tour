@@ -21,6 +21,8 @@ export default function UserForm() {
 
   const [isPhotoSelected, setIsPhotoSelected] = useState(false);
 
+  const [loading, setLoading] = useState(false);
+
   const handleInputChange = (e) => {
     if (e.target.id === "name") {
       setUserInfo((prev) => {
@@ -50,6 +52,8 @@ export default function UserForm() {
       formData.append("photo", photo[0]);
     }
 
+    setLoading(true);
+
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_URL_INTERNAL}/api/updateProfile`,
       {
@@ -59,6 +63,8 @@ export default function UserForm() {
     );
 
     const responseData = await res.json();
+
+    setLoading(false);
 
     if (responseData.status === "success") {
       dispatch(
@@ -140,8 +146,12 @@ export default function UserForm() {
             <label htmlFor="photo">Choose new photo</label>
           </div>
           <div className="form__group right">
-            <button type="submit" className="btn btn--small btn--blue">
-              Save Settings
+            <button
+              type="submit"
+              className="btn btn--small btn--blue"
+              disabled={loading}
+            >
+              {loading ? "Loading..." : "Save Settings"}
             </button>
           </div>
         </form>

@@ -1,6 +1,6 @@
 "use client";
 
-import { use, useState } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { showAlert } from "@/store";
 import ForgotPasswordForm from "./ForgotPasswordForm";
@@ -12,6 +12,8 @@ export default function ForgotPassword() {
   });
 
   const [successMessage, setSuccessMessage] = useState("");
+
+  const [loading, setLoading] = useState(false);
 
   const alert = useSelector((state) => state.alerts);
 
@@ -29,6 +31,8 @@ export default function ForgotPassword() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    setLoading(true);
+
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_URL_INTERNAL}/api/forgotPassword`,
       {
@@ -41,6 +45,8 @@ export default function ForgotPassword() {
     );
 
     const responseData = await response.json();
+
+    setLoading(false);
 
     if (responseData.status === "fail") {
       dispatch(
@@ -56,6 +62,7 @@ export default function ForgotPassword() {
           message: "Email sent to your inbox",
         })
       );
+
       setSuccessMessage(responseData.message);
     }
   };
@@ -70,6 +77,7 @@ export default function ForgotPassword() {
           formValues={formValues}
           handleInputChange={handleInputChange}
           handleSubmit={handleSubmit}
+          loading={loading}
         />
       )}
     </>

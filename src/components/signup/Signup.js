@@ -18,6 +18,8 @@ export default function Signup({ isLogin }) {
 
   const [signupSuccess, setSignupSuccess] = useState(false);
 
+  const [loading, setLoading] = useState(false);
+
   const router = useRouter();
 
   const alert = useSelector((state) => state.alerts);
@@ -26,6 +28,8 @@ export default function Signup({ isLogin }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    setLoading(true);
 
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_URL_INTERNAL}/api/signup`,
@@ -39,6 +43,8 @@ export default function Signup({ isLogin }) {
     );
 
     const responseData = await response.json();
+
+    setLoading(false);
 
     if (responseData.status === "fail") {
       dispatch(
@@ -93,7 +99,7 @@ export default function Signup({ isLogin }) {
     if (signupSuccess) {
       const navigate = setTimeout(() => {
         router.replace("/");
-      }, 5000);
+      }, 3000);
 
       return () => {
         clearTimeout(navigate);
@@ -114,13 +120,14 @@ export default function Signup({ isLogin }) {
       ) : signupSuccess ? (
         <h1>
           Your account have been created ! You will be automatically redirected
-          to home page in 5 seconds
+          to home page in 3 seconds
         </h1>
       ) : (
         <SignupForm
           formValues={formValues}
           handleInputChange={handleInputChange}
           handleSubmit={handleSubmit}
+          loading={loading}
         />
       )}
     </>

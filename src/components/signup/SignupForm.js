@@ -4,6 +4,7 @@ export default function SignupForm({
   formValues,
   handleSubmit,
   handleInputChange,
+  loading,
 }) {
   return (
     <main className="main">
@@ -73,8 +74,8 @@ export default function SignupForm({
           </div>
 
           <div className="form__group">
-            <button type="submit" className="btn btn--blue">
-              Sign Up
+            <button type="submit" className="btn btn--blue" disabled={loading}>
+              {loading ? "Loading..." : "Sign Up"}
             </button>
           </div>
         </form>

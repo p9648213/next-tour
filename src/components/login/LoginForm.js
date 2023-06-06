@@ -6,6 +6,7 @@ export default function LoginForm({
   formValues,
   handleInputChange,
   handleSubmit,
+  loading,
 }) {
   return (
     <main className="main">
@@ -47,8 +48,8 @@ export default function LoginForm({
             </Link>
           </div>
           <div className="form__group">
-            <button type="submit" className="btn btn--blue">
-              Login
+            <button type="submit" className="btn btn--blue" disabled={loading}>
+              {loading ? "Loading..." : "Login"}
             </button>
           </div>
         </form>
