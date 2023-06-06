@@ -16,7 +16,7 @@ export default function SearchBar({ onInputChange }) {
         <input
           type="text"
           placeholder="Search by tour name"
-          autocomplete="off"
+          autoComplete="new-password"
           value={searchTerm}
           onChange={onSearchChange}
         />

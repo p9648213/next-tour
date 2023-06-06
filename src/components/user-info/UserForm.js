@@ -100,7 +100,7 @@ export default function UserForm() {
               id="name"
               className="form__input"
               type="text"
-              autocomplete="off"
+              autoComplete="new-password"
               value={userInfo.name}
               onChange={handleInputChange}
               required
@@ -114,7 +114,7 @@ export default function UserForm() {
               id="email"
               className="form__input"
               type="email"
-              autocomplete="off"
+              autoComplete="new-password"
               value={userInfo.email}
               onChange={handleInputChange}
               required
