@@ -133,6 +133,7 @@ export default function UserForm() {
                     }`
               }
               alt="User photo"
+              placeholder="empty"
             />
             <input
               id="photo"

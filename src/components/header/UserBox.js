@@ -69,6 +69,7 @@ function UserBox({ user }) {
               alt={`Photo of ${user.name}`}
               width={128}
               height={128}
+              placeholder="empty"
             />
             <span>{user.name.split(" ")[0]}</span>
           </Link>

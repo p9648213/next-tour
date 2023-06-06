@@ -1,4 +1,11 @@
+const pause = (duration) => {
+  return new Promise((resolve) => {
+    setTimeout(resolve, duration);
+  });
+};
+
 async function fetchAllTour(queryParams) {
+  await pause(3000);
   const { sortString, searchTerm, page, limit } = queryParams;
   try {
     const res = await fetch(

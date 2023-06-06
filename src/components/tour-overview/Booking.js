@@ -61,6 +61,7 @@ export default function Booking({ tour }) {
               width={734}
               height={734}
               style={{ height: "100%", width: "100%" }}
+              placeholder="empty"
             />
           </div>
           <div className="cta__content">

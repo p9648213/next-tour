@@ -11,6 +11,7 @@ export default function CardHeader({ tour }) {
             width={2000}
             height={1333}
             alt={tour.name}
+            placeholder="empty"
           />
         </div>
       </div>

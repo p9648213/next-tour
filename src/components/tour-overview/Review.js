@@ -39,6 +39,7 @@ export default function Review({ tour }) {
             className="reviews__avatar-img"
             width={128}
             height={128}
+            placeholder="empty"
           />
           <h6 className="reviews__user">{review.user.name}</h6>
         </div>

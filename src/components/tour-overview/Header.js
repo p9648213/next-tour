@@ -11,6 +11,7 @@ export default function Header({ tour }) {
           alt={tour.name}
           width={2000}
           height={1333}
+          placeholder="empty"
         />
       </div>
 

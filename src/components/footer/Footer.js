@@ -11,6 +11,7 @@ export default function Footer() {
           width={734}
           height={734}
           style={{ height: "5rem", width: "100%" }}
+          placeholder="empty"
         />
       </div>
       <ul className="footer__nav">

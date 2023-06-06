@@ -30,6 +30,7 @@ async function Header() {
           width={734}
           height={734}
           style={{ height: "4.5rem", width: "100%" }}
+          placeholder="empty"
         />
       </div>
       <nav className="nav nav--user">

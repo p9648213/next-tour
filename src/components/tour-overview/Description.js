@@ -29,6 +29,7 @@ export default function Description({ tour }) {
           alt={guide.name}
           width={128}
           height={128}
+          placeholder="empty"
         />
         {guide.role === "lead-guide" ? (
           <span className="overview-box__label">Lead guide</span>

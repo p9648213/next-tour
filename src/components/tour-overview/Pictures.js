@@ -10,6 +10,7 @@ export default function Pictures({ tour }) {
           alt={`${tour.name} Tour ${index + 1}`}
           width={2000}
           height={1333}
+          placeholder="empty"
         />
       </div>
     );

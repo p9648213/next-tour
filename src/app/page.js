@@ -1,10 +1,8 @@
+import { Suspense } from "react";
 import AllTours from "@/components/all-tours/AllTours";
 import Filter from "@/components/shared/Filter";
-import Pagination from "@/components/shared/Pagination";
 
-import { fetchAllTour } from "@/utils/tour-helper";
-
-export default async function Home({ searchParams }) {
+export default function Home({ searchParams }) {
   const selectTypeOptions = [
     { value: "createdAt", label: "New Tour" },
     { value: "price", label: "Price" },
@@ -82,15 +80,6 @@ export default async function Home({ searchParams }) {
     limit: defaultLimit,
   };
 
-  const res = await fetchAllTour(queryParams);
-
-  if (res.status === "fail") {
-    throw new Error(res.message);
-  }
-
-  const tourData = res.data.data;
-  const totalTour = res.totalDocsBeforePaginate;
-
   return (
     <main className="main">
       <div className="filter-container">
@@ -109,13 +98,20 @@ export default async function Home({ searchParams }) {
           defaultPage={defaultPage}
         />
       </div>
-      <AllTours tourData={tourData} />
-      <Pagination
-        totalData={totalTour}
-        defaultPage={defaultPage}
-        defaultLimit={defaultLimit}
-        siblings={1}
-      />
+
+      <Suspense
+        fallback={
+          <div className="loading-container">
+            <h1 className="loading">Loading...</h1>
+          </div>
+        }
+      >
+        <AllTours
+          queryParams={queryParams}
+          defaultPage={defaultPage}
+          defaultLimit={defaultLimit}
+        />
+      </Suspense>
     </main>
   );
 }
