@@ -31,7 +31,7 @@ export default function ManageTour() {
       <div className="input-tag__container">
         <label htmlFor="tag">Tag Name: </label>
         <input type="text" id="tag" ref={inputRef} />
-        <button className="btn btn--green" type="submit">
+        <button className="btn btn--blue" type="submit">
           Revalidate
         </button>
       </div>

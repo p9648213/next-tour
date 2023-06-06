@@ -71,14 +71,14 @@ export default function Booking({ tour }) {
             </p>
             {user.name ? (
               <button
-                className="btn btn--green span-all-rows cta__text"
+                className="btn btn--blue span-all-rows cta__text"
                 onClick={() => handleCheckout()}
               >
                 Book tour now!
               </button>
             ) : (
               <button
-                className="btn btn--green span-all-rows cta__text"
+                className="btn btn--blue span-all-rows cta__text"
                 onClick={navigateToLogin}
               >
                 Log in to book tour

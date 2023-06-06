@@ -125,7 +125,7 @@ export default function PasswordForm({ token }) {
             />
           </div>
           <div className="form__group right">
-            <button type="submit" className="btn btn--small btn--green">
+            <button type="submit" className="btn btn--small btn--blue">
               Save password
             </button>
           </div>

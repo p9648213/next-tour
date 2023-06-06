@@ -10,7 +10,7 @@ export default function CardFooter({ tour }) {
         <span className="card__footer-value">{tour.ratingsAverage} / 5</span>{" "}
         <span className="card__footer-text">rating</span>
       </p>
-      <Link className="btn btn--green btn--small" href={`/tours/${tour.slug}`}>
+      <Link className="btn btn--blue btn--small" href={`/tours/${tour.slug}`}>
         Details
       </Link>
     </div>

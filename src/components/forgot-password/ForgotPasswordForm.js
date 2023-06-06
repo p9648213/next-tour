@@ -25,7 +25,7 @@ export default function ForgotPasswordForm({
             />
           </div>
           <div className="form__group">
-            <button type="submit" className="btn btn--green">
+            <button type="submit" className="btn btn--blue">
               Send Email
             </button>
           </div>
