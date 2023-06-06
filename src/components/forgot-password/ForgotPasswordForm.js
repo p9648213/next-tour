@@ -22,6 +22,7 @@ export default function ForgotPasswordForm({
               value={formValues.email}
               onChange={handleInputChange}
               placeholder="Your login email"
+              autocomplete="off"
               required
             />
           </div>

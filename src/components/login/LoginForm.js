@@ -24,6 +24,7 @@ export default function LoginForm({
               value={formValues.email}
               onChange={handleInputChange}
               placeholder="you@example.com"
+              autocomplete="off"
               required
             />
           </div>

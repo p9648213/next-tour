@@ -19,6 +19,7 @@ export default function SignupForm({
               id="name"
               className="form__input"
               type="text"
+              autocomplete="off"
               value={formValues.name}
               onChange={handleInputChange}
               placeholder="Ex: John"
@@ -34,6 +35,7 @@ export default function SignupForm({
               id="email"
               className="form__input"
               type="email"
+              autocomplete="off"
               value={formValues.email}
               onChange={handleInputChange}
               placeholder="Ex: you@example.com"
