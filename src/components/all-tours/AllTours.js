@@ -8,8 +8,6 @@ export default async function AllTours({
   defaultPage,
   defaultLimit,
 }) {
-  console.log("navigation");
-
   const res = await fetchAllTour(queryParams);
 
   if (res.status === "fail") {
