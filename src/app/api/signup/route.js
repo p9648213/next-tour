@@ -8,12 +8,11 @@ export async function POST(request) {
   const data = await request.json();
   const res = await signup(data);
 
-  console.log(res);
-
   if (res.status === "success") {
     cookieStore.set("jwt", res.token, {
       expires: new Date(res.expires),
       httpOnly: true,
+      secure: true,
     });
 
     return NextResponse.json({ status: res.status });

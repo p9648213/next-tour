@@ -12,6 +12,7 @@ export async function POST(request) {
     cookieStore.set("jwt", res.token, {
       expires: new Date(res.expires),
       httpOnly: true,
+      secure: true,
     });
 
     return NextResponse.json({ status: res.status });
