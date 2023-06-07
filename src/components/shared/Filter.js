@@ -14,31 +14,37 @@ export default function Filter(props) {
 
   const onInputChange = (e, name) => {
     if (name === "type") {
-      router.push(
-        `/${defaultPage !== 1 ? `?page=${defaultPage}&` : "?"}${e.value}=${
-          behaviorOptions.default.value
-        }${defaultSearchTerm !== "" ? `&search=${defaultSearchTerm}` : ""}`
-      );
+      if (e.value !== behaviorOptions.default.value) {
+        router.push(
+          `/${defaultPage !== 1 ? `?page=${defaultPage}&` : "?"}${e.value}=${
+            behaviorOptions.default.value
+          }${defaultSearchTerm !== "" ? `&search=${defaultSearchTerm}` : ""}`
+        );
+      }
     }
 
     if (name === "behavior") {
-      router.push(
-        `/${defaultPage !== 1 ? `?page=${defaultPage}&` : "?"}${
-          typeOptions.default.value
-        }=${e.value}${
-          defaultSearchTerm !== "" ? `&search=${defaultSearchTerm}` : ""
-        }`
-      );
+      if (e.value !== typeOptions.default.value) {
+        router.push(
+          `/${defaultPage !== 1 ? `?page=${defaultPage}&` : "?"}${
+            typeOptions.default.value
+          }=${e.value}${
+            defaultSearchTerm !== "" ? `&search=${defaultSearchTerm}` : ""
+          }`
+        );
+      }
     }
 
     if (name === "searchTerm") {
-      router.push(
-        `/${defaultPage !== 1 ? `?page=${defaultPage}&` : "?"}${
-          typeOptions.default.value
-        }=${behaviorOptions.default.value}${
-          e.value !== "" ? `&search=${e.value}` : ""
-        }`
-      );
+      if (e.value !== defaultSearchTerm) {
+        router.push(
+          `/${defaultPage !== 1 ? `?page=${defaultPage}&` : "?"}${
+            typeOptions.default.value
+          }=${behaviorOptions.default.value}${
+            e.value !== "" ? `&search=${e.value}` : ""
+          }`
+        );
+      }
     }
   };
 

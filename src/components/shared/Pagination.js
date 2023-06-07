@@ -35,24 +35,26 @@ export default function Pagination({
   }
 
   function handlePageChange(value) {
-    if (value === "&laquo;") {
-      if (page !== 1) {
-        router.push(createNavigationURL(1));
+    if (value !== defaultPage) {
+      if (value === "&laquo;") {
+        if (page !== 1) {
+          router.push(createNavigationURL(1));
+        }
+      } else if (value === "&lsaquo;") {
+        if (page !== 1) {
+          router.push(createNavigationURL(page - 1));
+        }
+      } else if (value === "&rsaquo;") {
+        if (page !== totalPage) {
+          router.push(createNavigationURL(page + 1));
+        }
+      } else if (value === "&raquo;") {
+        if (page !== totalPage) {
+          router.push(createNavigationURL(totalPage));
+        }
+      } else {
+        router.push(createNavigationURL(value));
       }
-    } else if (value === "&lsaquo;") {
-      if (page !== 1) {
-        router.push(createNavigationURL(page - 1));
-      }
-    } else if (value === "&rsaquo;") {
-      if (page !== totalPage) {
-        router.push(createNavigationURL(page + 1));
-      }
-    } else if (value === "&raquo;") {
-      if (page !== totalPage) {
-        router.push(createNavigationURL(totalPage));
-      }
-    } else {
-      router.push(createNavigationURL(value));
     }
   }
 
