@@ -14,7 +14,7 @@ export default function Filter(props) {
 
   const onInputChange = (e, name) => {
     if (name === "type") {
-      if (e.value !== behaviorOptions.default.value) {
+      if (e.value !== typeOptions.default.value) {
         router.push(
           `/${defaultPage !== 1 ? `?page=${defaultPage}&` : "?"}${e.value}=${
             behaviorOptions.default.value
@@ -24,7 +24,7 @@ export default function Filter(props) {
     }
 
     if (name === "behavior") {
-      if (e.value !== typeOptions.default.value) {
+      if (e.value !== behaviorOptions.default.value) {
         router.push(
           `/${defaultPage !== 1 ? `?page=${defaultPage}&` : "?"}${
             typeOptions.default.value
