@@ -1,17 +1,11 @@
 async function fetchAllTour(queryParams) {
   const { sortString, searchTerm, page, limit } = queryParams;
 
-  let calPage = page;
-
-  if (searchTerm !== "") {
-    calPage = 1;
-  }
-
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_URL}/api/v1/tours/?sort=${sortString}${
         searchTerm && `&name=${searchTerm}`
-      }&page=${calPage}&limit=${limit}`,
+      }&page=${page}&limit=${limit}`,
       { next: { tags: ["fetchAllTour"] } }
     );
 
