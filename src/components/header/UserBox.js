@@ -6,7 +6,7 @@ import Alert from "../shared/Alert";
 
 import { useRouter } from "next/navigation";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { showAlert } from "@/store";
 import { setUserInfo, clearUserInfo } from "@/store";
 

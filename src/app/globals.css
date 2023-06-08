@@ -1184,6 +1184,10 @@ input:focus {
 
 .loading-container {
   margin: 2rem;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
 }
 
 .select-container {

@@ -1,15 +1,9 @@
-import dynamic from "next/dynamic";
-
 import Header from "@/components/tour-overview/Header";
 import Description from "@/components/tour-overview/Description";
 import Pictures from "@/components/tour-overview/Pictures";
 import Review from "@/components/tour-overview/Review";
 import MapBox from "@/components/tour-overview/MapBox";
-
-const Booking = dynamic(() => import("@/components/tour-overview/Booking"), {
-  ssr: false,
-  loading: () => <p>Loading...</p>,
-});
+import Booking from "@/components/tour-overview/Booking";
 
 import { fetchTour } from "@/utils/tour-helper";
 

@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { loadStripe } from "@stripe/stripe-js";
 import { useSelector, useDispatch } from "react-redux";
 import { showAlert } from "@/store";
 import Alert from "@/components/shared/Alert";
+import ClientOnly from "../shared/ClientOnly";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY);
 
@@ -77,22 +78,24 @@ export default function Booking({ tour }) {
               {tour.duration} days. 1 adventure. Infinite memories. Make it
               yours today!
             </p>
-            {user.name ? (
-              <button
-                className="btn btn--blue span-all-rows cta__text"
-                onClick={() => handleCheckout()}
-                disabled={loading}
-              >
-                {loading ? "Loading..." : "Book tour now!"}
-              </button>
-            ) : (
-              <button
-                className="btn btn--blue span-all-rows cta__text"
-                onClick={navigateToLogin}
-              >
-                Log in to book tour
-              </button>
-            )}
+            <ClientOnly>
+              {user.name ? (
+                <button
+                  className="btn btn--blue span-all-rows cta__text"
+                  onClick={() => handleCheckout()}
+                  disabled={loading}
+                >
+                  {loading ? "Loading..." : "Book tour now!"}
+                </button>
+              ) : (
+                <button
+                  className="btn btn--blue span-all-rows cta__text"
+                  onClick={navigateToLogin}
+                >
+                  Log in to book tour
+                </button>
+              )}
+            </ClientOnly>
           </div>
         </div>
       </section>

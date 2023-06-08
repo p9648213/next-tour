@@ -3,10 +3,11 @@
 import SideNav from "./SideNav";
 import UserInfo from "./UserInfo";
 import MyBooking from "./MyBooking";
+import ManageTour from "./ManageTour";
+import ClientOnly from "../shared/ClientOnly";
 
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
-import ManageTour from "./ManageTour";
 
 export default function UserPanel() {
   const [activeItem, setActiveItem] = useState(
@@ -34,13 +35,13 @@ export default function UserPanel() {
   }
 
   return (
-    <>
+    <ClientOnly>
       <SideNav activeItem={activeItem} changeActiveItem={changeActiveItem} />
       {content || (
         <div className="user-view__maintenance">
           <h1>This section is under maintenance</h1>
         </div>
       )}
-    </>
+    </ClientOnly>
   );
 }
