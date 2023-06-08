@@ -1,65 +1,86 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import SelectBox from "./SelectBox";
+import Select from "./Select";
 import SearchBar from "./SearchBar";
 
-export default function Filter(props) {
+export default function Filter({
+  selectTypeOptions,
+  selectBehaviorOptions,
+  defaultSearchTerm,
+  defaultPage,
+}) {
+  const [typeOption, setTypeOption] = useState(selectTypeOptions.default);
+  const [behaviorOption, setBehaviorOption] = useState(
+    selectBehaviorOptions.default
+  );
+
   const router = useRouter();
 
-  const typeOptions = props.selectTypeOptions;
-  const behaviorOptions = props.selectBehaviorOptions;
-  const defaultSearchTerm = props.defaultSearchTerm;
-  const defaultPage = props.defaultPage;
+  const onTypeOptionChange = (option) => {
+    setTypeOption(option);
+    router.push(
+      `/${defaultPage !== 1 ? `?page=${defaultPage}&` : "?"}${option.value}=${
+        selectBehaviorOptions.default.value
+      }${defaultSearchTerm !== "" ? `&search=${defaultSearchTerm}` : ""}`
+    );
+  };
 
-  const onInputChange = (e, name) => {
-    if (name === "type") {
-      if (e.value !== typeOptions.default.value) {
-        router.push(
-          `/${defaultPage !== 1 ? `?page=${defaultPage}&` : "?"}${e.value}=${
-            behaviorOptions.default.value
-          }${defaultSearchTerm !== "" ? `&search=${defaultSearchTerm}` : ""}`
-        );
-      }
-    }
+  const onBehaviorOptionChange = (option) => {
+    setBehaviorOption(option);
+    router.push(
+      `/${defaultPage !== 1 ? `?page=${defaultPage}&` : "?"}${
+        selectTypeOptions.default.value
+      }=${option.value}${
+        defaultSearchTerm !== "" ? `&search=${defaultSearchTerm}` : ""
+      }`
+    );
+  };
 
-    if (name === "behavior") {
-      if (e.value !== behaviorOptions.default.value) {
-        router.push(
-          `/${defaultPage !== 1 ? `?page=${defaultPage}&` : "?"}${
-            typeOptions.default.value
-          }=${e.value}${
-            defaultSearchTerm !== "" ? `&search=${defaultSearchTerm}` : ""
-          }`
-        );
-      }
-    }
-
-    if (name === "searchTerm") {
-      if (e.value !== defaultSearchTerm) {
-        router.push(
-          `/${defaultPage !== 1 ? `?page=${defaultPage}&` : "?"}${
-            typeOptions.default.value
-          }=${behaviorOptions.default.value}${
-            e.value !== "" ? `&search=${e.value}` : ""
-          }`
-        );
-      }
+  const onSearchSubmit = (searchTerm) => {
+    if (searchTerm !== defaultSearchTerm) {
+      router.push(
+        `/${defaultPage !== 1 ? `?page=${defaultPage}&` : "?"}${
+          selectTypeOptions.default.value
+        }=${selectBehaviorOptions.default.value}${
+          searchTerm !== "" ? `&search=${searchTerm}` : ""
+        }`
+      );
     }
   };
 
+  useEffect(() => {
+    if (selectTypeOptions.default !== typeOption) {
+      setTypeOption(selectTypeOptions.default);
+    }
+
+    if (selectBehaviorOptions.default !== behaviorOption) {
+      setBehaviorOption(selectBehaviorOptions.default);
+    }
+  }, [selectTypeOptions.default, selectBehaviorOptions.default]);
+
   return (
     <>
-      <SearchBar onInputChange={onInputChange} />
-      <SelectBox
-        optionsConfig={typeOptions}
-        defaultValue={typeOptions.default}
-        onInputChange={onInputChange}
+      <SearchBar
+        defaultSearchTerm={defaultSearchTerm}
+        onSearchSubmit={onSearchSubmit}
       />
-      <SelectBox
-        optionsConfig={behaviorOptions}
-        defaultValue={behaviorOptions.default}
-        onInputChange={onInputChange}
+
+      <Select
+        options={selectTypeOptions.options}
+        value={typeOption}
+        clearable={false}
+        multiple={false}
+        onChange={(o) => onTypeOptionChange(o)}
+      />
+
+      <Select
+        options={selectBehaviorOptions.options}
+        value={behaviorOption}
+        clearable={false}
+        multiple={false}
+        onChange={(o) => onBehaviorOptionChange(o)}
       />
     </>
   );

@@ -1016,7 +1016,7 @@ body {
 
 .search input {
   background-color: white;
-  border: 0;
+  border: none;
   border-radius: 2px;
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
@@ -1029,7 +1029,7 @@ body {
   display: flex;
 }
 
-.search-icon {
+.search-icon-container {
   height: 60px;
   width: 60px;
   background-color: white;
@@ -1037,6 +1037,12 @@ body {
   place-items: center;
   border: none;
   cursor: pointer;
+}
+
+.search-icon {
+  transform: rotate(-45deg);
+  font-size: 45px;
+  color: #526c85;
 }
 
 input:focus {
@@ -1178,6 +1184,121 @@ input:focus {
 
 .loading-container {
   margin: 2rem;
+}
+
+.select-container {
+  position: relative;
+  flex: 1;
+  min-width: 1.5em;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.5em;
+  border: 0.05em solid white;
+  border-radius: 2px;
+  font-size: 18px;
+  background-color: white;
+  outline: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+.value {
+  flex-grow: 1;
+  display: flex;
+  gap: 0.5em;
+  flex-wrap: wrap;
+}
+
+.clear-btn {
+  background: none;
+  color: #777;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: 1.25em;
+}
+
+.clear-btn:focus,
+.clear-btn:hover {
+  color: #333;
+}
+
+.divider {
+  background-color: #c1c1c1;
+  align-self: stretch;
+  width: 0.05em;
+}
+
+.caret {
+  translate: 0 25%;
+  border: 0.25em solid transparent;
+  border-top-color: #777;
+}
+
+.options {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: none;
+  max-height: 15em;
+  overflow-y: auto;
+  border: 0.05em solid #c1c1c1;
+  border-radius: 2px;
+  width: 100%;
+  left: 0;
+  top: calc(100% + 0.25em);
+  background-color: white;
+  z-index: 100;
+}
+
+.options.show {
+  display: block;
+}
+
+.option {
+  padding: 0.25em 0.5em;
+  cursor: pointer;
+}
+
+.option.selected {
+  background-color: #334b63;
+  color: white;
+}
+
+.option.highlighted {
+  background-color: #526c85;
+  color: white;
+}
+
+.option-badge {
+  display: flex;
+  align-items: center;
+  border: 0.05em solid #777;
+  border-radius: 0.25em;
+  padding: 0.15em 0.25em;
+  gap: 0.25em;
+  cursor: pointer;
+  background: none;
+  outline: none;
+}
+
+.option-badge:hover,
+.option-badge:focus {
+  background-color: hsl(0, 100%, 90%);
+  border-color: hsl(0, 100%, 50%);
+}
+
+.option-badge:hover > .remove-btn,
+.option-badge:focus > .remove-btn {
+  color: hsl(0, 100%, 50%);
+}
+
+.option-badge > .remove-btn {
+  font-size: 18px;
+  color: #777;
 }
 
 @media only screen and (max-width: 72em) {

@@ -1,8 +1,8 @@
 import { cookies } from "next/headers";
-import Title from "./Title";
 import Image from "next/image";
 import UserBox from "./UserBox";
 import { getUserInfo } from "@/utils/user-helper";
+import Link from "next/link";
 
 async function Header() {
   const cookieStore = cookies();
@@ -21,7 +21,9 @@ async function Header() {
   return (
     <header className="header">
       <nav className="nav nav--tours">
-        <Title title="All Tours" />
+        <Link className="nav__el" href="/">
+          Next Tour
+        </Link>
       </nav>
       <div className="header__logo">
         <Image
