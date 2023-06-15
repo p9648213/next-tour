@@ -4,8 +4,8 @@ import Footer from "@/components/footer/Footer";
 import Providers from "@/store/Provider";
 
 export const metadata = {
-  title: "Natours | Exciting tours for adventurous people",
-  description: "Made in heaven",
+  title: "Next Tour",
+  description: "NextJS Project",
   icons: {
     icon: "/img/favicon.ico",
   },
