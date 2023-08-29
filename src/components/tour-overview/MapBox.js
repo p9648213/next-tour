@@ -67,7 +67,7 @@ function MapBox({ tour }) {
 
   return (
     <section className="section-map">
-      {error ? <div id="map"></div> : <div>{error}</div>}
+      {!error ? <div id="map"></div> : <div>{error}</div>}
     </section>
   );
 }
