@@ -22,7 +22,7 @@ export default async function TourOverview({ params }) {
       <Header tour={tour} />
       <Description tour={tour} />
       <Pictures tour={tour} />
-      {/* <MapBox tour={tour} /> */}
+      <MapBox tour={tour} />
       <Review tour={tour} />
       <Booking tour={tour} />
     </>
